@@ -177,9 +177,10 @@
       } catch (e) {}
     }
 
-    // Hero entrance: slow, elegant
+    // Hero entrance: slow, elegant (fade + subtle scale)
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('[data-hero-fade]', { y: 34, opacity: 0, duration: 1.2, stagger: 0.12, delay: 0.25 });
+    tl.from('.hero-video, .hero-fallback', { scale: 1.08, duration: 2.2, ease: 'power2.out' }, 0)
+      .from('[data-hero-fade]', { y: 34, opacity: 0, duration: 1.2, stagger: 0.12, delay: 0.25 }, 0.2);
     if (heroWords && heroWords.length) {
       tl.from(heroWords, { yPercent: 110, duration: 1.3, stagger: 0.02 }, '-=0.9');
     } else {
@@ -230,6 +231,45 @@
       btn.addEventListener('mouseleave', function () { gsap.to(btn, { y: 0, duration: 0.5, ease: 'power3.out' }); });
     });
   }
+
+  /* ---------- Interactive services: floating hover image (desktop) ---------- */
+  (function serviceHover() {
+    var preview = document.querySelector('[data-service-preview]');
+    var previewImg = preview ? preview.querySelector('[data-service-preview-img]') : null;
+    var list = document.querySelector('[data-service-list]');
+    if (!preview || !previewImg || !list || isMobile || prefersReduced) return;
+    var rows = list.querySelectorAll('article[data-img]');
+    if (!rows.length) return;
+    var active = false;
+    var px = 0, py = 0, cx = 0, cy = 0;
+    function loop() {
+      cx += (px - cx) * 0.12;
+      cy += (py - cy) * 0.12;
+      preview.style.transform = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px) scale(' + (active ? 1 : 0.85) + ')';
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+    document.querySelector('.services').addEventListener('mousemove', function (e) {
+      var r = list.getBoundingClientRect();
+      px = e.clientX - r.left + 24;
+      py = e.clientY - r.top - 140;
+    });
+    rows.forEach(function (row) {
+      row.addEventListener('mouseenter', function () {
+        var src = row.getAttribute('data-img');
+        if (src && previewImg.getAttribute('src') !== src) previewImg.setAttribute('src', src);
+        active = true;
+        preview.classList.add('on');
+        if (hasGSAP) window.gsap.to(preview, { opacity: 1, duration: 0.45, ease: 'power3.out' });
+        else preview.style.opacity = '1';
+      });
+      row.addEventListener('mouseleave', function () {
+        active = false;
+        if (hasGSAP) window.gsap.to(preview, { opacity: 0, duration: 0.4, ease: 'power3.out', onComplete: function () { preview.classList.remove('on'); } });
+        else { preview.style.opacity = '0'; preview.classList.remove('on'); }
+      });
+    });
+  })();
 
   /* ---------- Mobile gallery: Swiper only ---------- */
   try {
