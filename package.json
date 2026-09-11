@@ -1,0 +1,10 @@
+{
+  "name": "suray-nail-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Suray Nail Studio — statik site. Build adımı doğrulama yapar (sıfır dependency).",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node build.js"
+  }
+}

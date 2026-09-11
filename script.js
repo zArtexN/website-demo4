@@ -4,6 +4,10 @@
   'use strict';
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isMobile = window.matchMedia('(max-width: 820px)').matches;
+  // Debug kill-switch: open page with ?noanim to disable ALL motion libraries
+  // (Lenis, GSAP, ScrollTrigger, SplitType, video scrub). Static, fully readable site.
+  var ANIM_OFF = /[?&]noanim\b/.test(window.location.search || '');
+  if (ANIM_OFF) prefersReduced = true;
   var hasGSAP = typeof window.gsap !== 'undefined';
   var hasST = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
   var hasSplit = typeof window.SplitType !== 'undefined';
@@ -103,11 +107,19 @@
     video.muted = true;
     try { video.pause(); } catch (e) {}
     var markReady = function () {
+      if (videoReady) return;
       videoReady = true;
       video.classList.add('ready');
       try { if (video.duration) video.currentTime = 0; } catch (e) {}
     };
-    video.addEventListener('canplay', markReady, { once: true });
+    // canplay may already have fired before this script ran (fast local load)
+    // or metadata may arrive later — cover both, idempotently.
+    if (!isMobile && !prefersReduced && video.readyState >= 2) {
+      markReady();
+    } else if (!isMobile && !prefersReduced) {
+      video.addEventListener('canplay', markReady, { once: true });
+      video.addEventListener('loadeddata', markReady, { once: true });
+    }
     video.addEventListener('loadedmetadata', function () {
       try { video.currentTime = 0; } catch (e) {}
     });
@@ -188,32 +200,43 @@
   if (hasGSAP && hasST && !prefersReduced) {
     var gsap = window.gsap;
 
-    // SplitType headings first (so hero words exist before entrance)
-    var heroWords = null;
-    if (hasSplit) {
-      try {
-        document.querySelectorAll('[data-split]').forEach(function (h) {
-          var split = new window.SplitType(h, { types: 'lines,words', tagName: 'span' });
-          if (h.closest('.hero-content')) heroWords = split.words;
-          else {
-            gsap.from(split.words, {
-              yPercent: 110, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.03,
-              scrollTrigger: { trigger: h, start: 'top 86%' }
-            });
-          }
-        });
-      } catch (e) {}
-    }
-
-    // Hero entrance: slow, elegant (fade + subtle scale)
+    // Hero entrance: slow, elegant (fade + subtle scale) — runs immediately
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.from('.hero-video, .hero-fallback', { scale: 1.08, duration: 2.2, ease: 'power2.out' }, 0)
       .from('[data-hero-fade]', { y: 34, opacity: 0, duration: 1.2, stagger: 0.12, delay: 0.25 }, 0.2);
-    if (heroWords && heroWords.length) {
-      tl.from(heroWords, { yPercent: 110, duration: 1.3, stagger: 0.02 }, '-=0.9');
-    } else {
-      tl.from('.hero-content h1', { y: 40, opacity: 0, duration: 1.3 }, '-=0.9');
+
+    // SplitType headings: init ONCE, only after fonts settle (fallback fonts give
+    // wrong line-breaks). Timeout fallback so slow fonts never block animation.
+    var splitsDone = false;
+    function initTextAnims() {
+      if (splitsDone) return;
+      splitsDone = true;
+      var heroWords = null;
+      if (hasSplit) {
+        try {
+          document.querySelectorAll('[data-split]').forEach(function (h) {
+            var split = new window.SplitType(h, { types: 'lines,words', tagName: 'span' });
+            if (h.closest('.hero-content')) {
+              heroWords = split.words;
+            } else {
+              gsap.from(split.words, {
+                yPercent: 110, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.03,
+                scrollTrigger: { trigger: h, start: 'top 86%' }
+              });
+            }
+          });
+        } catch (e) { /* static headings remain readable */ }
+      }
+      if (heroWords && heroWords.length) {
+        gsap.from(heroWords, { yPercent: 110, duration: 1.3, stagger: 0.02, ease: 'power3.out' });
+      }
+      try { window.ScrollTrigger.refresh(); } catch (e) {}
     }
+    if (document.fonts && document.fonts.ready) {
+      try { document.fonts.ready.then(function () { initTextAnims(); }); } catch (e) {}
+    }
+    window.addEventListener('load', function () { initTextAnims(); });
+    setTimeout(function () { initTextAnims(); }, 1600);
 
     // Section reveals
     revealEls.forEach(function (el) {
