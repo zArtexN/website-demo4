@@ -3,118 +3,318 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Suray Nail Studio | Bostancı, Kadıköy</title>
-<meta name="description" content="Suray Nail Studio — Bostancı, Kadıköy'de manikür, pedikür, kalıcı oje, protez tırnak, nail art ve tırnak bakımı.">
-<meta name="theme-color" content="#171412">
-<meta property="og:title" content="Suray Nail Studio | Bostancı">
-<meta property="og:description" content="Güzelliğinize yeni bir dokunuş. Suray Nail Studio, Bostancı / Kadıköy.">
+<title>Suray Nail Studio | Nail Studio in Bostancı, Kadıköy</title>
+<meta name="description" content="Suray Nail Studio — Bostancı, Kadıköy'de manikür, pedikür, kalıcı oje, protez tırnak ve nail art. Detaylara odaklanan sakin, hijyenik ve premium stüdyo deneyimi. WhatsApp ile randevu alın.">
+<link rel="canonical" href="https://suraynailstudio.com/">
+<meta name="theme-color" content="#1C1512">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Suray Nail Studio | Nail Studio in Bostancı, Kadıköy">
+<meta property="og:description" content="Details make the difference. Bostancı'da manikür, kalıcı oje, protez tırnak ve nail art.">
+<meta property="og:image" content="assets/nail-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
- "@context":"https://schema.org","@type":"NailSalon","name":"Suray Nail Studio","telephone":"+90 539 520 10 94",
- "address":{"@type":"PostalAddress","streetAddress":"Bostancı, Yazmacı Tahir Sk. No:46","postalCode":"34744","addressLocality":"Kadıköy","addressRegion":"İstanbul","addressCountry":"TR"},
- "sameAs":["https://www.instagram.com/suray_nail_studio_/"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"367"}
+  "@context": "https://schema.org",
+  "@type": "NailSalon",
+  "name": "Suray Nail Studio",
+  "image": "assets/nail-01.jpg",
+  "telephone": "+905395201094",
+  "priceRange": "₺₺",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Yazmacı Tahir Sk. No:46",
+    "addressLocality": "Kadıköy",
+    "addressRegion": "İstanbul",
+    "postalCode": "34744",
+    "addressCountry": "TR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.9561, "longitude": 29.0943 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00", "closes": "20:00"
+  }],
+  "sameAs": ["https://www.instagram.com/suray_nail_studio_/"],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "367" }
 }
 </script>
 </head>
 <body>
-<header class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="Suray Nail Studio ana sayfa"><span>SURAY</span><small>NAIL STUDIO</small></a>
+<a class="skip" href="#main">İçeriğe atla</a>
+
+<header class="nav" id="nav" data-nav>
+  <a class="brand" href="#top" aria-label="Suray Nail Studio ana sayfa">
+    <span class="brand-mark">SURAY</span><small>NAIL STUDIO</small>
+  </a>
   <nav class="desktop-nav" aria-label="Ana menü">
-    <a href="#about">Hakkımızda</a><a href="#services">Hizmetler</a><a href="#work">Çalışmalar</a><a href="#reviews">Yorumlar</a><a href="#contact">İletişim</a>
-    <a class="nav-cta" href="https://wa.me/905395201094">RANDEVU AL</a>
+    <a href="#about">Stüdyo</a>
+    <a href="#services">Hizmetler</a>
+    <a href="#experience">Deneyim</a>
+    <a href="#work">Çalışmalar</a>
+    <a href="#contact">Konum</a>
+    <a class="nav-cta" href="https://wa.me/905395201094?text=Merhaba%2C%20randevu%20oluşturmak%20istiyorum." target="_blank" rel="noopener">
+      <span>Randevu Al</span><i data-lucide="arrow-up-right" aria-hidden="true"></i>
+    </a>
   </nav>
-  <button class="menu" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav"><i></i><i></i></button>
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil menü">
-    <a href="#about">Hakkımızda</a><a href="#services">Hizmetler</a><a href="#work">Çalışmalar</a><a href="#reviews">Yorumlar</a><a href="#contact">İletişim</a>
-    <a class="nav-cta" href="https://wa.me/905395201094">RANDEVU AL ↗</a>
+  <button class="menu" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav" data-menu><i></i><i></i></button>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil menü" data-mobile-nav>
+    <a href="#about">Stüdyo</a>
+    <a href="#services">Hizmetler</a>
+    <a href="#experience">Deneyim</a>
+    <a href="#work">Çalışmalar</a>
+    <a href="#contact">Konum</a>
+    <a class="nav-cta" href="https://wa.me/905395201094?text=Merhaba%2C%20randevu%20oluşturmak%20istiyorum." target="_blank" rel="noopener">Randevu Al</a>
+    <p class="mobile-meta">Bostancı · Kadıköy<br>+90 539 520 10 94</p>
   </nav>
 </header>
 
-<main id="top">
-  <section class="hero-scroll" aria-label="Suray Nail Studio açılış">
-    <div class="hero-sticky">
-      <video id="heroVideo" class="hero-video" muted playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-label="Suray Nail Studio'dan çalışma ve stüdyo görüntüleri">
+<main id="main">
+  <!-- 1 / HERO -->
+  <section class="hero-scroll" id="top" aria-label="Suray Nail Studio açılış" data-hero>
+    <div class="hero-sticky" data-hero-sticky>
+      <video id="heroVideo" class="hero-video" muted playsinline preload="metadata" poster="assets/nail-01.jpg" aria-label="Suray Nail Studio stüdyo görüntüleri" data-hero-video>
         <source src="assets/suray-studio.mp4" type="video/mp4">
       </video>
-      <div class="hero-fallback" aria-hidden="true"></div>
-      <div class="hero-overlay"></div>
+      <div class="hero-fallback" aria-hidden="true" data-hero-fallback></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-grain" aria-hidden="true"></div>
-      <div class="hero-topline"><span>BOSTANCI · KADIKÖY · İSTANBUL</span><span>09:00 — 20:00</span></div>
-      <div class="hero-content">
-        <p class="hero-kicker">PREMIUM NAIL STUDIO</p>
-        <h1>Güzelliğinize<br><em>yeni bir dokunuş.</em></h1>
-        <p class="hero-sub">Manikür, bakım ve tasarımda özenli detaylar.</p>
-        <div class="hero-actions"><a class="button light" href="https://wa.me/905395201094">RANDEVU AL <span>↗</span></a><a class="hero-link" href="#about">STÜDYOYU KEŞFET <span>↓</span></a></div>
+
+      <div class="hero-topline" data-hero-fade>
+        <span>Suray Nail Studio — Bostancı · İstanbul</span>
+        <span class="hero-hours"><i data-lucide="clock" aria-hidden="true"></i>09:00 — 20:00</span>
       </div>
-      <div class="hero-caption" aria-live="polite"><span id="captionIndex">01</span><strong id="heroCaption">Özenli bakım.</strong></div>
-      <div class="scroll-indicator"><span>SCROLL TO EXPLORE</span><i></i></div>
-      <div class="video-progress"><span id="progressBar"></span></div>
+
+      <div class="hero-content">
+        <p class="hero-kicker" data-hero-fade><span class="rule" aria-hidden="true"></span>Premium Nail Studio</p>
+        <p class="hero-brandline" data-hero-fade>Suray Nail Studio</p>
+        <h1 data-split>Details make<br><em>the difference.</em></h1>
+        <p class="hero-sub" data-hero-fade>Bostancı, Kadıköy'de manikür, kalıcı oje ve nail art — sakin, hijyenik ve detaya adanmış bir stüdyo.</p>
+        <div class="hero-actions" data-hero-fade>
+          <a class="button light magnetic" href="https://wa.me/905395201094?text=Merhaba%2C%20randevu%20oluşturmak%20istiyorum." target="_blank" rel="noopener">
+            <span>Randevu Al</span><i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a class="hero-link magnetic" href="#work"><span>Çalışmalarımızı Keşfet</span><i data-lucide="arrow-down" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-caption" aria-live="polite" data-hero-fade>
+        <span id="captionIndex">01</span><strong id="heroCaption">Özenli bakım.</strong>
+      </div>
+      <div class="scroll-hint" aria-hidden="true" data-hero-fade><span>Scroll</span><i></i></div>
+      <div class="video-progress" aria-hidden="true"><span id="progressBar"></span></div>
     </div>
   </section>
 
-  <section class="statement section" id="about">
-    <div class="eyebrow">01 / SURAY NAIL STUDIO</div>
+  <!-- 2 / BRAND INTRODUCTION -->
+  <section class="statement section" id="about" data-reveal>
+    <div class="eyebrow"><span>01</span><i></i><span>Suray Nail Studio</span></div>
     <div class="statement-grid">
-      <h2>Your nails,<br><em>your signature.</em></h2>
-      <div class="statement-copy"><p class="lead">Bir tırnak tasarımı, küçük detayların bütünüdür. Form, parlaklık, renk ve temiz işçilik bir araya geldiğinde görünüm kendini belli eder.</p><p>Suray Nail Studio, Bostancı'da manikür ve tırnak bakımına odaklanan bir stüdyo. Her randevuda kişisel zevkinize alan açan, sakin ve özenli bir deneyim sunmayı amaçlar.</p></div>
+      <h2 data-split>Your nails,<br><em>your signature.</em></h2>
+      <div class="statement-copy">
+        <p class="lead" data-reveal>Bir tırnak tasarımı küçük detayların bütünüdür — form, renk, parlaklık ve temiz işçilik.</p>
+        <p data-reveal>Suray Nail Studio, Bostancı'da manikür ve tırnak bakımına odaklanan butik bir stüdyodur. Her randevuda size özel zaman ayrılır; acele edilmez, malzeme ve hijyenden ödün verilmez.</p>
+        <div class="statement-meta" data-reveal>
+          <div><b>Butik</b><span>tek koltuk odağı</span></div>
+          <div><b>Sakin</b><span>huzurlu atmosfer</span></div>
+          <div><b>Özenli</b><span>detay işçiliği</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="proof">
-    <div><b>4.9</b><span>/5</span></div><p>367+ Google değerlendirmesi</p><i></i><p>Bostancı · Kadıköy</p>
-  </section>
+  <aside class="proof" aria-label="Değerlendirme özeti" data-reveal>
+    <div class="proof-rating"><b>4.9</b><span>/5</span></div>
+    <p>367+ Google değerlendirmesi</p><i aria-hidden="true"></i>
+    <p class="proof-loc">Bostancı · Kadıköy</p>
+    <a class="proof-link" href="https://www.google.com/maps/search/?api=1&query=Suray+Nail+Studio+Bostanc%C4%B1+Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener">Google'da görüntüle<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+  </aside>
 
-  <section class="services section" id="services">
-    <div class="section-head"><div><div class="eyebrow">02 / HİZMETLER</div><h2>Care,<br><em>shape, finish.</em></h2></div><p>İhtiyacınıza göre seçin. Randevu ve fiyat bilgisi için WhatsApp üzerinden iletişime geçebilirsiniz.</p></div>
-    <div class="service-list">
-      <article><span>01</span><div><h3>MANİKÜR</h3><p>Eller ve tırnaklar için temiz, düzenli ve özenli bakım.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20manik%C3%BCr%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum.">↗</a></article>
-      <article><span>02</span><div><h3>PEDİKÜR</h3><p>Bakımlı ve düzenli bir görünüm için ayak ve tırnak bakımı.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20pedik%C3%BCr%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum.">↗</a></article>
-      <article><span>03</span><div><h3>KALICI OJE</h3><p>Temiz renk, parlak bitiş ve bakımlı görünüm.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20kal%C4%B1c%C4%B1%20oje%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum.">↗</a></article>
-      <article><span>04</span><div><h3>PROTEZ TIRNAK</h3><p>Tercih ettiğiniz uzunluk ve forma göre şekillendirme.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20protez%20t%C4%B1rnak%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum.">↗</a></article>
-      <article><span>05</span><div><h3>NAIL ART</h3><p>Tarzınıza göre kişiselleştirilen detaylar ve tasarımlar.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20nail%20art%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum.">↗</a></article>
-      <article><span>06</span><div><h3>TIRNAK BAKIM UYGULAMALARI</h3><p>Tırnakların düzenli, temiz ve bakımlı görünümünü korumaya yönelik uygulamalar.</p></div><a href="https://wa.me/905395201094?text=Merhaba%2C%20tirnak%20bak%C4%B1m%C4%B1%20i%C3%A7in%20bilgi%20almak%20istiyorum.">↗</a></article>
+  <!-- 3 / SERVICES -->
+  <section class="services section" id="services" data-reveal>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>02</span><i></i><span>Hizmetler</span></div>
+        <h2 data-split>Care,<br><em>shape, finish.</em></h2>
+      </div>
+      <p>İhtiyacınıza göre seçin. Süre ve fiyat bilgisi için WhatsApp üzerinden yazmanız yeterli.</p>
+    </div>
+    <div class="service-list" data-service-list>
+      <article data-reveal>
+        <span>01</span>
+        <div><h3>Manikür</h3><p>Temiz form, düzenli tırnak çevresi ve bakımlı görünüm için özenli el bakımı.</p></div>
+        <a href="https://wa.me/905395201094?text=Merhaba%2C%20manik%C3%BCr%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="Manikür için WhatsApp ile yazın"><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </article>
+      <article data-reveal>
+        <span>02</span>
+        <div><h3>Pedikür</h3><p>Bakımlı ve düzenli bir görünüm için ayak ve tırnak bakımı.</p></div>
+        <a href="https://wa.me/905395201094?text=Merhaba%2C%20pedik%C3%BCr%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="Pedikür için WhatsApp ile yazın"><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </article>
+      <article data-reveal>
+        <span>03</span>
+        <div><h3>Kalıcı Oje</h3><p>Temiz renk, parlak bitiş ve uzun süre bakımlı görünüm.</p></div>
+        <a href="https://wa.me/905395201094?text=Merhaba%2C%20kal%C4%B1c%C4%B1%20oje%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="Kalıcı oje için WhatsApp ile yazın"><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </article>
+      <article data-reveal>
+        <span>04</span>
+        <div><h3>Protez Tırnak</h3><p>Tercih ettiğiniz uzunluk ve forma göre doğal görünümlü şekillendirme.</p></div>
+        <a href="https://wa.me/905395201094?text=Merhaba%2C%20protez%20t%C4%B1rnak%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="Protez tırnak için WhatsApp ile yazın"><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </article>
+      <article data-reveal>
+        <span>05</span>
+        <div><h3>Nail Art</h3><p>Tarzınıza göre kişiselleştirilen, zarif detaylar ve tasarımlar.</p></div>
+        <a href="https://wa.me/905395201094?text=Merhaba%2C%20nail%20art%20i%C3%A7in%20randevu%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="Nail art için WhatsApp ile yazın"><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </article>
     </div>
   </section>
 
-  <section class="editorial section">
-    <div class="eyebrow">03 / THE EXPERIENCE</div>
+  <!-- 4 / SIGNATURE EXPERIENCE -->
+  <section class="editorial section" id="experience" data-reveal>
+    <div class="eyebrow"><span>03</span><i></i><span>The Experience</span></div>
     <div class="editorial-grid">
-      <figure class="editorial-image"><img src="assets/studio-01.jpg" alt="Suray Nail Studio sterilizasyon alanı" loading="lazy"><figcaption>STERİLİZASYON / DETAY</figcaption></figure>
-      <div class="editorial-copy"><p class="mini">MADE FOR YOUR STYLE.</p><h2>Güzel görünmek,<br><em>iyi hissetmekle başlar.</em></h2><p>Stüdyonun gerçek detayları, uygulama sürecinin özenini ve temizliğe verilen önemi görünür kılar.</p><a class="under-link" href="https://www.instagram.com/suray_nail_studio_/">INSTAGRAM'DA KEŞFET ↗</a></div>
+      <figure class="editorial-image reveal-img" data-parallax>
+        <img src="assets/studio-sterilization.jpg" alt="Suray Nail Studio hijyen ve sterilizasyon düzeni" loading="lazy" decoding="async" width="1200" height="1500">
+        <figcaption>Sterilizasyon / Detay — Bostancı</figcaption>
+      </figure>
+      <div class="editorial-copy">
+        <p class="mini">Signature Experience</p>
+        <h2 data-split>Güzel görünmek,<br><em>iyi hissetmekle başlar.</em></h2>
+        <p class="editorial-lead">Her randevu; temiz araçlar, sakin tempo ve size ayrılmış tam dikkat ile ilerler.</p>
+        <ul class="experience-list">
+          <li data-reveal><i data-lucide="sparkles" aria-hidden="true"></i><div><b>Hijyen önceliği</b><span>Her misafir için temiz ve düzenli uygulama alanı.</span></div></li>
+          <li data-reveal><i data-lucide="timer" aria-hidden="true"></i><div><b>Acele etmeyen tempo</b><span>Detaylara zaman ayrılan sakin randevu akışı.</span></div></li>
+          <li data-reveal><i data-lucide="palette" aria-hidden="true"></i><div><b>Size özel seçim</b><span>Form ve renk, el yapınıza ve tarzınıza göre belirlenir.</span></div></li>
+        </ul>
+        <a class="under-link magnetic" href="https://www.instagram.com/suray_nail_studio_/" target="_blank" rel="noopener"><span>Instagram'da Keşfet</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </div>
     </div>
   </section>
 
-  <section class="work section" id="work">
-    <div class="section-head"><div><div class="eyebrow">04 / ÇALIŞMALAR</div><h2>Selected<br><em>details.</em></h2></div><p>Suray Nail Studio'ya ait yüklediğiniz gerçek çalışma görsellerinden seçki.</p></div>
-    <div class="gallery">
-      <figure class="g g1"><img src="assets/work-01.jpg" alt="Suray Nail Studio beyaz uzun tırnak çalışması" loading="lazy"><figcaption>01 / SOFT WHITE</figcaption></figure>
-      <figure class="g g2"><img src="assets/work-02.jpg" alt="Suray Nail Studio beyaz parlak tırnak çalışması" loading="lazy"><figcaption>02 / GLOSS</figcaption></figure>
-      <figure class="g g3"><img src="assets/work-03.jpg" alt="Suray Nail Studio pembe french tırnak çalışması" loading="lazy"><figcaption>03 / FRENCH</figcaption></figure>
-      <figure class="g g4"><img src="assets/work-04.jpg" alt="Suray Nail Studio pembe kırmızı french tırnak çalışması" loading="lazy"><figcaption>04 / RED DETAIL</figcaption></figure>
+  <!-- 5 / GALLERY -->
+  <section class="work section" id="work" data-reveal>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>04</span><i></i><span>Çalışmalar</span></div>
+        <h2 data-split>Selected<br><em>details.</em></h2>
+      </div>
+      <p>Stüdyoda yapılmış gerçek çalışmalardan bir seçki. Tamamı için Instagram profilini inceleyin.</p>
+    </div>
+
+    <div class="gallery" data-gallery>
+      <figure class="g g1 reveal-img" data-reveal>
+        <img src="assets/nail-01.jpg" alt="Suray Nail Studio — soft white tırnak çalışması" loading="lazy" decoding="async" width="900" height="1200">
+        <figcaption>01 / Soft White</figcaption>
+      </figure>
+      <figure class="g g2 reveal-img" data-reveal>
+        <img src="assets/nail-02.jpg" alt="Suray Nail Studio — parlak nude tırnak çalışması" loading="lazy" decoding="async" width="900" height="700">
+        <figcaption>02 / Gloss</figcaption>
+      </figure>
+      <figure class="g g3 reveal-img" data-reveal>
+        <img src="assets/nail-03.jpg" alt="Suray Nail Studio — french tırnak çalışması" loading="lazy" decoding="async" width="900" height="1200">
+        <figcaption>03 / French</figcaption>
+      </figure>
+      <figure class="g g4 reveal-img" data-reveal>
+        <img src="assets/nail-04.jpg" alt="Suray Nail Studio — detaylı nail art çalışması" loading="lazy" decoding="async" width="900" height="700">
+        <figcaption>04 / Detail</figcaption>
+      </figure>
+    </div>
+
+    <div class="swiper gallery-swiper" data-gallery-swiper aria-label="Çalışmalar galerisi">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/nail-01.jpg" alt="Suray Nail Studio çalışması 1" loading="lazy" decoding="async"><span>01 / Soft White</span></div>
+        <div class="swiper-slide"><img src="assets/nail-02.jpg" alt="Suray Nail Studio çalışması 2" loading="lazy" decoding="async"><span>02 / Gloss</span></div>
+        <div class="swiper-slide"><img src="assets/nail-03.jpg" alt="Suray Nail Studio çalışması 3" loading="lazy" decoding="async"><span>03 / French</span></div>
+        <div class="swiper-slide"><img src="assets/nail-04.jpg" alt="Suray Nail Studio çalışması 4" loading="lazy" decoding="async"><span>04 / Detail</span></div>
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
-  <section class="social section" id="reviews">
-    <div class="eyebrow">05 / SOSYAL KANIT</div>
-    <div class="social-grid"><div><div class="rating">4.9<small>/5</small></div><p>367+ Google değerlendirmesi</p></div><blockquote>“İşlemleri büyük bir özenle yapıyorlar. Kullanılan malzemeler ve materyaller kaliteli ve hijyenik; ortam ise temiz ve bakımlı.”<cite>Google değerlendirmelerinden</cite></blockquote></div>
+  <!-- 6 / GOOGLE SOCIAL PROOF -->
+  <section class="social section" id="reviews" data-reveal>
+    <div class="eyebrow"><span>05</span><i></i><span>Misafirlerimiz</span></div>
+    <div class="social-grid">
+      <div>
+        <div class="rating">4.9<small>/5</small></div>
+        <p>367+ Google değerlendirmesi</p>
+        <a class="button dark magnetic" href="https://www.google.com/maps/search/?api=1&query=Suray+Nail+Studio+Bostanc%C4%B1+Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener"><span>Google Yorumlarını Gör</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="social-note">
+        <i data-lucide="quote" aria-hidden="true"></i>
+        <p>Değerlendirmelerimizin tamamı Google profilimizde herkese açık şekilde listelenir. Karar vermeden önce gerçek misafir deneyimlerini inceleyebilirsiniz.</p>
+        <span>Bostancı · Kadıköy — Doğrulanmış Google profili</span>
+      </div>
+    </div>
   </section>
 
-  <section class="instagram section">
-    <div class="eyebrow">06 / INSTAGRAM</div><div class="insta-grid"><h2>@suray_nail_<br><em>studio_</em></h2><a class="button dark" href="https://www.instagram.com/suray_nail_studio_/">ÇALIŞMALARI KEŞFET ↗</a></div>
+  <!-- 7 / INSTAGRAM -->
+  <section class="instagram section" data-reveal>
+    <div class="eyebrow"><span>06</span><i></i><span>Instagram</span></div>
+    <div class="insta-grid">
+      <h2 data-split>@suray_nail_<br><em>studio_</em></h2>
+      <div>
+        <p>Güncel çalışmalar, renkler ve stüdyodan anlar için bizi takip edin.</p>
+        <a class="button dark magnetic" href="https://www.instagram.com/suray_nail_studio_/" target="_blank" rel="noopener"><span>Çalışmaları Keşfet</span><i data-lucide="instagram" aria-hidden="true"></i></a>
+      </div>
+    </div>
   </section>
 
-  <section class="contact section" id="contact">
-    <div class="eyebrow">07 / BOSTANCI</div>
-    <div class="contact-grid"><div><h2>Come by.<br><em>Stay awhile.</em></h2></div><div class="contact-card"><p>Bostancı, Yazmacı Tahir Sk. No:46<br>34744 Kadıköy / İstanbul</p><p>+90 539 520 10 94</p><div><a class="under-link" href="https://www.google.com/maps/search/?api=1&query=Suray%20Nail%20Studio%2C%20Bostanc%C4%B1%2C%20Yazmac%C4%B1%20Tahir%20Sk.%20No%3A46%2C%20Kad%C4%B1k%C3%B6y%2C%20%C4%B0stanbul">YOL TARİFİ AL ↗</a><a class="under-link" href="tel:+905395201094">ARA ↗</a></div></div></div>
+  <!-- 8 / LOCATION -->
+  <section class="contact section" id="contact" data-reveal>
+    <div class="eyebrow"><span>07</span><i></i><span>Bostancı</span></div>
+    <div class="contact-grid">
+      <div><h2 data-split>Come by.<br><em>Stay awhile.</em></h2></div>
+      <div class="contact-card">
+        <p><i data-lucide="map-pin" aria-hidden="true"></i>Yazmacı Tahir Sk. No:46<br>34744 Kadıköy / İstanbul</p>
+        <p><i data-lucide="phone" aria-hidden="true"></i><a href="tel:+905395201094">+90 539 520 10 94</a></p>
+        <p class="hours"><i data-lucide="clock" aria-hidden="true"></i>Pzt — Cmt · 09:00 — 20:00</p>
+        <div class="contact-links">
+          <a class="under-link magnetic" href="https://www.google.com/maps/search/?api=1&query=Suray%20Nail%20Studio%2C%20Bostanc%C4%B1%2C%20Yazmac%C4%B1%20Tahir%20Sk.%20No%3A46%2C%20Kad%C4%B1k%C3%B6y%2C%20%C4%B0stanbul" target="_blank" rel="noopener"><span>Yol Tarifi Al</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          <a class="under-link magnetic" href="tel:+905395201094"><span>Ara</span><i data-lucide="phone" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="booking"><div><p class="eyebrow">08 / RANDEVU</p><h2>Bir sonraki<br><em>dokunuşunuz burada.</em></h2><p>Randevu oluşturmak için WhatsApp üzerinden bize ulaşın.</p><a class="button light booking-btn" href="https://wa.me/905395201094">WHATSAPP'TAN RANDEVU AL ↗</a></div></section>
+  <!-- 9 / WHATSAPP BOOKING CTA -->
+  <section class="booking" data-reveal>
+    <div>
+      <p class="eyebrow light">08 / Randevu</p>
+      <h2 data-split>Bir sonraki<br><em>dokunuşunuz burada.</em></h2>
+      <p>Randevu oluşturmak için WhatsApp üzerinden bize ulaşın.<br>Genellikle aynı gün içinde dönüş yapıyoruz.</p>
+      <a class="button light booking-btn magnetic" href="https://wa.me/905395201094?text=Merhaba%2C%20randevu%20oluşturmak%20istiyorum." target="_blank" rel="noopener"><span>WhatsApp'tan Randevu Al</span><i data-lucide="message-circle" aria-hidden="true"></i></a>
+    </div>
+  </section>
 </main>
-<footer><div class="footer-brand">SURAY <span>NAIL STUDIO</span></div><div><p>BOSTANCI · İSTANBUL</p><p>09:00 — 20:00</p></div><div class="footer-links"><a href="https://www.instagram.com/suray_nail_studio_/">Instagram</a><a href="https://wa.me/905395201094">WhatsApp</a><a href="https://www.google.com/maps/search/?api=1&query=Suray%20Nail%20Studio%2C%20Bostanc%C4%B1%2C%20Kad%C4%B1k%C3%B6y%2C%20%C4%B0stanbul">Google Maps</a></div><small>© 2026 Suray Nail Studio</small></footer>
+
+<!-- 10 / FOOTER -->
+<footer data-reveal>
+  <div class="footer-brand">SURAY <span>Nail Studio · Bostancı</span></div>
+  <div>
+    <p>Bostancı, Yazmacı Tahir Sk. No:46<br>Kadıköy / İstanbul</p>
+    <p>Pzt — Cmt · 09:00 — 20:00</p>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/suray_nail_studio_/" target="_blank" rel="noopener"><i data-lucide="instagram" aria-hidden="true"></i>Instagram</a>
+    <a href="https://wa.me/905395201094" target="_blank" rel="noopener"><i data-lucide="message-circle" aria-hidden="true"></i>WhatsApp</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Suray+Nail+Studio+Bostanc%C4%B1+Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener"><i data-lucide="map-pin" aria-hidden="true"></i>Google Maps</a>
+  </div>
+  <small>© 2026 Suray Nail Studio — Tüm hakları saklıdır.</small>
+</footer>
+
+<a class="wa-float magnetic" href="https://wa.me/905395201094?text=Merhaba%2C%20randevu%20oluşturmak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp ile randevu al"><i data-lucide="message-circle" aria-hidden="true"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>
