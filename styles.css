@@ -14,7 +14,7 @@
   --sans:'DM Sans',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{background:var(--espresso);scroll-behavior:auto;overflow-x:hidden}
+html{scroll-behavior:auto;overflow-x:hidden}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw}
