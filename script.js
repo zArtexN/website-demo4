@@ -40,6 +40,19 @@
 
   /* ---------- Lenis + GSAP sync ---------- */
   var lenis = null;
+  var anchorEls = document.querySelectorAll('a[href^="#"]');
+  function nativeAnchor(el) {
+    el.addEventListener('click', function (ev) {
+      var id = el.getAttribute('href');
+      if (id.length > 1) {
+        var t = document.querySelector(id);
+        if (t) {
+          ev.preventDefault();
+          t.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        }
+      }
+    });
+  }
   try {
     if (hasLenis && !prefersReduced) {
       lenis = new window.Lenis({ duration: 1.25, smoothWheel: true });
@@ -57,7 +70,7 @@
         (function raf(time) { lenis.raf(time); requestAnimationFrame(raf); })(0);
       }
       // Anchor links via Lenis
-      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      anchorEls.forEach(function (a) {
         a.addEventListener('click', function (ev) {
           var id = a.getAttribute('href');
           if (id.length > 1) {
@@ -66,9 +79,16 @@
           }
         });
       });
+    } else {
+      anchorEls.forEach(nativeAnchor);
     }
-  } catch (e) { lenis = null; }
-  if (hasST) { try { window.gsap.registerPlugin(window.ScrollTrigger); } catch (e) {} }
+  } catch (e) { lenis = null; anchorEls.forEach(nativeAnchor); }
+  if (hasST) {
+    try {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      window.ScrollTrigger.config({ ignoreMobileResize: true });
+    } catch (e) {}
+  }
 
   /* ---------- Hero scroll-driven video (rAF) ---------- */
   var video = document.getElementById('heroVideo');
@@ -113,6 +133,11 @@
     var p = Math.min(1, Math.max(0, -top / max));
     return p;
   }
+  function heroVisible() {
+    if (!hero) return false;
+    var r = hero.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight;
+  }
   function updateTarget() {
     var p = heroProgress();
     if (video && video.duration && videoReady && !prefersReduced && !isMobile) {
@@ -141,7 +166,10 @@
     displayedTime += delta * 0.18;
     try { video.currentTime = displayedTime; } catch (e) {}
   }
-  (function raf() { updateTarget(); queueSeek(); requestAnimationFrame(raf); })();
+  (function raf() {
+    if (heroVisible()) { updateTarget(); queueSeek(); }
+    requestAnimationFrame(raf);
+  })();
 
   /* ---------- Reveal fallback (no GSAP) ---------- */
   var revealEls = document.querySelectorAll('[data-reveal]');
@@ -210,11 +238,12 @@
       }
     });
 
-    // Parallax: editorial image + hero content drift
+    // Parallax: editorial/statement/band images + hero content drift
+    // Images are 124% tall with -12% offset, so ±5 yPercent never exposes edges.
     if (!isMobile) {
       gsap.utils.toArray('[data-parallax] img').forEach(function (img) {
-        gsap.fromTo(img, { yPercent: -7 }, {
-          yPercent: 7, ease: 'none',
+        gsap.fromTo(img, { yPercent: -5 }, {
+          yPercent: 5, ease: 'none',
           scrollTrigger: { trigger: img.closest('[data-parallax]'), start: 'top bottom', end: 'bottom top', scrub: true }
         });
       });
@@ -224,11 +253,38 @@
       });
     }
 
-    // CTA micro-interactions
-    gsap.utils.toArray('.magnetic').forEach(function (btn) {
-      if (isMobile) return;
-      btn.addEventListener('mouseenter', function () { gsap.to(btn, { y: -3, duration: 0.4, ease: 'power3.out' }); });
-      btn.addEventListener('mouseleave', function () { gsap.to(btn, { y: 0, duration: 0.5, ease: 'power3.out' }); });
+    // Subtle magnetic CTA: small pull toward cursor, springs back (fine pointers only)
+    if (window.matchMedia('(pointer: fine)').matches) {
+      gsap.utils.toArray('.magnetic').forEach(function (btn) {
+        var xTo = gsap.quickTo(btn, 'x', { duration: 0.5, ease: 'power3.out' });
+        var yTo = gsap.quickTo(btn, 'y', { duration: 0.5, ease: 'power3.out' });
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          var dx = e.clientX - (r.left + r.width / 2);
+          var dy = e.clientY - (r.top + r.height / 2);
+          xTo(Math.max(-7, Math.min(7, dx * 0.16)));
+          yTo(Math.max(-7, Math.min(7, dy * 0.16)));
+        });
+        btn.addEventListener('mouseleave', function () { xTo(0); yTo(0); });
+      });
+    }
+
+    // Keep trigger positions correct after layout settles (fonts, images)
+    var refreshT = null;
+    function queueRefresh() {
+      if (refreshT) return;
+      refreshT = setTimeout(function () {
+        refreshT = null;
+        try { window.ScrollTrigger.refresh(); } catch (e) {}
+      }, 250);
+    }
+    window.addEventListener('load', queueRefresh);
+    if (document.fonts && document.fonts.ready) {
+      try { document.fonts.ready.then(queueRefresh); } catch (e) {}
+    }
+    document.querySelectorAll('main img').forEach(function (img) {
+      if (img.complete) return;
+      img.addEventListener('load', queueRefresh, { once: true });
     });
   }
 
@@ -240,6 +296,11 @@
     if (!preview || !previewImg || !list || isMobile || prefersReduced) return;
     var rows = list.querySelectorAll('article[data-img]');
     if (!rows.length) return;
+    // Preload hover images so reveal is instant (desktop only)
+    rows.forEach(function (row) {
+      var s = row.getAttribute('data-img');
+      if (s) { var im = new Image(); im.src = s; }
+    });
     var active = false;
     var px = 0, py = 0, cx = 0, cy = 0;
     function loop() {
@@ -260,8 +321,10 @@
         if (src && previewImg.getAttribute('src') !== src) previewImg.setAttribute('src', src);
         active = true;
         preview.classList.add('on');
-        if (hasGSAP) window.gsap.to(preview, { opacity: 1, duration: 0.45, ease: 'power3.out' });
-        else preview.style.opacity = '1';
+        if (hasGSAP) {
+          window.gsap.to(preview, { opacity: 1, duration: 0.45, ease: 'power3.out' });
+          window.gsap.fromTo(previewImg, { scale: 1.14 }, { scale: 1, duration: 0.7, ease: 'power3.out' });
+        } else preview.style.opacity = '1';
       });
       row.addEventListener('mouseleave', function () {
         active = false;
